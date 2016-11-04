@@ -11,8 +11,8 @@ class Tabletop {
   }
 
   set width(width) {
-    if (!Number.isInteger(width)) {
-      throw 'Width is not an integer';
+    if (!Number.isInteger(width) || width <= 0) {
+      throw 'Width is not an integer or > 0';
     }
 
     this._width = width;
@@ -23,8 +23,8 @@ class Tabletop {
   }
 
   set height(height) {
-    if (!Number.isInteger(height)) {
-      throw 'Height is not an integer';
+    if (!Number.isInteger(height)  || height <= 0) {
+      throw 'Height is not an integer or > 0';
     }
 
     this._height = height;
