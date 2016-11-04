@@ -64,7 +64,7 @@ describe('Robot class', function() {
 
   describe('place()', function() {
 
-    it('should call the tabletop method isValidPosition with correct parameters', function() {
+    it('should call tabletop.isValidPosition() with correct parameters', function() {
       robot.place(2, 3, 'EAST');
 
       expect(tabletop.isValidPosition).toHaveBeenCalledWith(2, 3);
