@@ -173,7 +173,7 @@ describe('Robot class', function() {
 
       robot.move();
 
-      expect(robot.move).not.toHaveBeenCalled();
+      expect(robot.place).not.toHaveBeenCalled();
     });
 
     it('should call increment x or y correctly depending on direction and then call place()', function() {
@@ -182,16 +182,41 @@ describe('Robot class', function() {
       spyOn(robot, 'place').and.callThrough();
 
       robot.move();
-      expect(robot.place).toHaveBeenCalledWith(3, 2, 'EAST');
+      expect(robot.place.calls.mostRecent().args).toEqual([3, 2, 'EAST']);
       robot.left();
       robot.move();
-      expect(robot.place).toHaveBeenCalledWith(3, 3, 'NORTH');
+      expect(robot.place.calls.mostRecent().args).toEqual([3, 3, 'NORTH']);
       robot.left();
       robot.move();
-      expect(robot.place).toHaveBeenCalledWith(2, 3, 'WEST');
+      expect(robot.place.calls.mostRecent().args).toEqual([2, 3, 'WEST']);
       robot.left();
       robot.move();
-      expect(robot.place).toHaveBeenCalledWith(2, 2, 'SOUTH');
+      expect(robot.place.calls.mostRecent().args).toEqual([2, 2, 'SOUTH']);
+    });
+
+  });
+
+  describe('report()', function() {
+    
+    it('should be defined', function() {
+      expect(robot.report).toBeDefined();
+    });
+
+    it('should not write to console if the robot has not yet been placed', function() {
+      console.log = jasmine.createSpy('log');
+
+      robot.report();
+
+      expect(console.log).not.toHaveBeenCalled();
+    });
+
+    it('should write to console correctly if called after robot has been placed', function() {
+      console.log = jasmine.createSpy('log');
+
+      robot.place(3, 4, 'WEST');
+      robot.report();
+
+      expect(console.log).toHaveBeenCalledWith('3,4,WEST');
     });
 
   });
