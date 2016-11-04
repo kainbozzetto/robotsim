@@ -12,7 +12,7 @@ class Tabletop {
 
   set width(width) {
     if (!Number.isInteger(width) || width <= 0) {
-      throw 'Width is not an integer or > 0';
+      throw 'width is not an integer or > 0';
     }
 
     this._width = width;
@@ -24,17 +24,19 @@ class Tabletop {
 
   set height(height) {
     if (!Number.isInteger(height)  || height <= 0) {
-      throw 'Height is not an integer or > 0';
+      throw 'height is not an integer or > 0';
     }
 
     this._height = height;
   }
 
   isValidPosition(x, y) {
+    // verify inputs
     if (!Number.isInteger(x) || !Number.isInteger(y)) {
-      throw 'Either one or more inputs are not integers';
+      throw 'either one or more inputs are not integers';
     }
 
+    // if either x or y is outside the bounding box then return false
     if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
       return false;
     }

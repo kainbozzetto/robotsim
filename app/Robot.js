@@ -11,6 +11,8 @@ class Robot {
     this.placed = false;
   }
 
+  // reference to the tabletop for position based checks
+
   get tabletop() {
     return this._tabletop;
   }
@@ -62,36 +64,43 @@ class Robot {
   }
 
   place(x, y, f) {
+    // verify with the tabletop whether the intended positions are valid
     if (this.tabletop.isValidPosition(x, y)) {
       this.x = x;
       this.y = y;
       this.f = f;
 
+      // set placed to be true, allows for other functions to now be invoked
       this.placed = true;
     }
   }
 
   left() {
+    // check if the robot is placed
     if (this.placed) {
-      var i = this.directions.indexOf(this.f);
+      let i = this.directions.indexOf(this.f);
 
+      // rotate the direction to the left by obtaining the previous index
       this.f = this.directions[i - 1 < 0 ? this.directions.length - 1 : i - 1];
     }
   }
 
   right() {
+    // check if the robot is placed
     if (this.placed) {
-      var i = this.directions.indexOf(this.f);
+      let i = this.directions.indexOf(this.f);
 
+      // rotate the direction to the right by obtaining the next index
       this.f = this.directions[i + 1 >= this.directions.length ? 0 : i + 1];
     }
   }
 
   move() {
     if (this.placed) {
-      var x = this.x,
+      let x = this.x,
           y = this.y;
 
+      // change x or y depending on facing direction
       switch (this.f) {
         case 'NORTH':
           y += 1;
@@ -107,6 +116,7 @@ class Robot {
           break;
       }
 
+      // update the robot with new x and y & existing f using place()
       this.place(x, y, this.f);
     }
   }

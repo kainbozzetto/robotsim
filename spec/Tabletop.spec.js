@@ -61,7 +61,7 @@ describe('Tabletop Class', function() {
 
   });
   
-  describe('isValidPosition method', function() {
+  describe('isValidPosition()', function() {
 
     it('should throw as input is not an integer', function() {
       expect(function() {
