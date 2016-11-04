@@ -2,16 +2,8 @@
 
 class Tabletop {
   constructor(width, height) {
-    if (!Number.isInteger(width)) {
-      throw 'Width is not an integer';
-    }
-
-    if (!Number.isInteger(height)) {
-      throw 'Height is not an integer';
-    };
-
-    this._width = width;
-    this._height = height;
+    this.width = width;
+    this.height = height;
   }
 
   get width() {
