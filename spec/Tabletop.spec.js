@@ -8,6 +8,11 @@ describe('Tabletop Class', function() {
      expect(tabletop).toBeDefined();
   });
 
+  it('should have its width and height attributes defined', function() {
+    expect(tabletop.width).toBeDefined();
+    expect(tabletop.height).toBeDefined();
+  });
+
   describe('isValidPosition method', function() {
 
     it('should be an invalid position', function() {
