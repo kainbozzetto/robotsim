@@ -110,6 +110,12 @@ class Robot {
       this.place(x, y, this.f);
     }
   }
+
+  report() {
+    if (this.placed) {
+      console.log(this.x + ',' + this.y + ',' + this.f);
+    }
+  }
 }
 
 module.exports = Robot;
