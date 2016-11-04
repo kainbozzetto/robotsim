@@ -15,11 +15,19 @@ npm install
 Modify the commands.txt file in order to control the robot.
 
 The robot can take the following commands:
+```
 PLACE X,Y,DIRECTION
+
 LEFT
+
 RIGHT
+
 MOVE
+
 REPORT
+```
+
+To run the application:
 
 ```sh
 node index.js
