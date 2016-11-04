@@ -53,7 +53,7 @@ describe('Tabletop Class', function() {
       }).toThrow();
     });
 
-    it('should not throw as height is an integer', function() {
+    it('should not throw as height is an integer and > 0', function() {
       expect(function() {
         tabletop.height = 2;
       }).not.toThrow();
