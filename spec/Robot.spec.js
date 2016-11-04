@@ -2,11 +2,12 @@ var Robot = require('../app/Robot');
 
 describe('Robot class', function() {
 
-  var tabletop = jasmine.createSpyObj('Tabletop', ['isValidPosition']);
-
-  var robot;
+  var tabletop, robot;
 
   beforeEach(function() {
+    tabletop = jasmine.createSpyObj('Tabletop', ['isValidPosition']);
+    tabletop.isValidPosition.and.returnValue(true);
+    
     robot = new Robot(tabletop);
   });
 
@@ -71,9 +72,6 @@ describe('Robot class', function() {
     });
 
     it('should set x, y, f to the new parameters position if valid & set placed variable as true', function() {
-      // set return value of isValidPosition to true
-      tabletop.isValidPosition.and.returnValue(true);
-
       // robot has not yet been placed
       expect(robot.placed).toEqual(false);
 
@@ -101,6 +99,7 @@ describe('Robot class', function() {
   });
 
   describe('left()', function() {
+
     it('should be defined', function() {
       expect(robot.left).toBeDefined();
     });
@@ -122,9 +121,11 @@ describe('Robot class', function() {
       robot.left();
       expect(robot.f).toEqual('EAST');
     });
+
   });
 
   describe('right()', function() {
+
     it('should be defined', function() {
       expect(robot.right).toBeDefined();
     });
@@ -146,6 +147,53 @@ describe('Robot class', function() {
       robot.right();
       expect(robot.f).toEqual('EAST');
     });
+
+  });
+
+  describe('move()', function() {
+
+    it('should be defined', function() {
+      expect(robot.move).toBeDefined();
+    });
+
+    it('should not change x,y,f if robot has not yet been placed', function() {
+      var x = robot.x,
+          y = robot.y,
+          f = robot.f;
+
+      robot.move();
+
+      expect(robot.x).toEqual(x);
+      expect(robot.y).toEqual(y);
+      expect(robot.f).toEqual(f);
+    });
+
+    it('should not call place() if robot has not yet been placed', function() {
+      spyOn(robot, 'place');
+
+      robot.move();
+
+      expect(robot.move).not.toHaveBeenCalled();
+    });
+
+    it('should call increment x or y correctly depending on direction and then call place()', function() {
+      robot.place(2, 2, 'EAST');
+
+      spyOn(robot, 'place').and.callThrough();
+
+      robot.move();
+      expect(robot.place).toHaveBeenCalledWith(3, 2, 'EAST');
+      robot.left();
+      robot.move();
+      expect(robot.place).toHaveBeenCalledWith(3, 3, 'NORTH');
+      robot.left();
+      robot.move();
+      expect(robot.place).toHaveBeenCalledWith(2, 3, 'WEST');
+      robot.left();
+      robot.move();
+      expect(robot.place).toHaveBeenCalledWith(2, 2, 'SOUTH');
+    });
+
   });
 
 });
