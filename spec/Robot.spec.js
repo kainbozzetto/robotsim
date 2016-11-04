@@ -70,15 +70,21 @@ describe('Robot class', function() {
       expect(tabletop.isValidPosition).toHaveBeenCalledWith(2, 3);
     });
 
-    it('should set x, y, f to the new parameters position is valid', function() {
+    it('should set x, y, f to the new parameters position if valid & set placed variable as true', function() {
       // set return value of isValidPosition to true
       tabletop.isValidPosition.and.returnValue(true);
+
+      // robot has not yet been placed
+      expect(robot.placed).toEqual(false);
 
       robot.place(2, 3, 'EAST');
 
       expect(robot.x).toEqual(2);
       expect(robot.y).toEqual(3);
       expect(robot.f).toEqual('EAST');
+
+      // robot has now been placed
+      expect(robot.placed).toEqual(true);
 
       // set return value of isValidPosition to false
       tabletop.isValidPosition.and.returnValue(false);
@@ -88,6 +94,8 @@ describe('Robot class', function() {
       expect(robot.x).toEqual(2);
       expect(robot.y).toEqual(3);
       expect(robot.f).toEqual('EAST');
+
+      expect(robot.placed).toEqual(true);
     });
     
   });
