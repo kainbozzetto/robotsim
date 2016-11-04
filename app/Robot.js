@@ -5,7 +5,7 @@ class Robot {
   constructor(tabletop) {
     this.tabletop = tabletop;
 
-    // possible facing directions fo the robot
+    // possible facing directions for the robot
     this.directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 
     this.placed = false;
