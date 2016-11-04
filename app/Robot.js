@@ -7,6 +7,8 @@ class Robot {
 
     // possible facing directions fo the robot
     this.directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
+
+    this.placed = false;
   }
 
   get tabletop() {
@@ -64,6 +66,48 @@ class Robot {
       this.x = x;
       this.y = y;
       this.f = f;
+
+      this.placed = true;
+    }
+  }
+
+  left() {
+    if (this.placed) {
+      var i = this.directions.indexOf(this.f);
+
+      this.f = this.directions[i - 1 < 0 ? this.directions.length - 1 : i - 1];
+    }
+  }
+
+  right() {
+    if (this.placed) {
+      var i = this.directions.indexOf(this.f);
+
+      this.f = this.directions[i + 1 >= this.directions.length ? 0 : i + 1];
+    }
+  }
+
+  move() {
+    if (this.placed) {
+      var x = this.x,
+          y = this.y;
+
+      switch (this.f) {
+        case 'NORTH':
+          y += 1;
+          break;
+        case 'EAST':
+          x += 1;
+          break;
+        case 'SOUTH':
+          y -= 1;
+          break;
+        case 'WEST':
+          x -= 1;
+          break;
+      }
+
+      this.place(x, y, this.f);
     }
   }
 }
