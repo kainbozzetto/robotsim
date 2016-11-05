@@ -7,33 +7,33 @@ class Tabletop {
   }
 
   get width() {
-    return this._width;
+    return this.private_width;
   }
 
   set width(width) {
     if (!Number.isInteger(width) || width <= 0) {
-      throw 'width is not an integer or > 0';
+      throw Error('width is not an integer or > 0');
     }
 
-    this._width = width;
+    this.private_width = width;
   }
 
   get height() {
-    return this._height;
+    return this.private_height;
   }
 
   set height(height) {
-    if (!Number.isInteger(height)  || height <= 0) {
-      throw 'height is not an integer or > 0';
+    if (!Number.isInteger(height) || height <= 0) {
+      throw Error('height is not an integer or > 0');
     }
 
-    this._height = height;
+    this.private_height = height;
   }
 
   isValidPosition(x, y) {
     // verify inputs
     if (!Number.isInteger(x) || !Number.isInteger(y)) {
-      throw 'either one or more inputs are not integers';
+      throw Error('either one or more inputs are not integers');
     }
 
     // if either x or y is outside the bounding box then return false

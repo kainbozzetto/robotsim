@@ -1,22 +1,22 @@
-var App = require('../app/App');
- 
-describe('App class', function() {
-  
-  var app = new App();
+'use strict';
 
-  describe('init', function() {
-    it('should be defined', function() {
+const App = require('../app/App');
+
+describe('App class', () => {
+  const app = new App();
+
+  describe('init', () => {
+    it('should be defined', () => {
       expect(app).toBeDefined();
     });
   });
 
-  describe('readLine()', function() {
-
-    it('should be defined', function() {
+  describe('readLine()', () => {
+    it('should be defined', () => {
       expect(app.readLine).toBeDefined();
     });
 
-    it('should call the correct function depending on line input', function() {
+    it('should call the correct function depending on line input', () => {
       spyOn(app.robot, 'place');
       spyOn(app.robot, 'left');
       spyOn(app.robot, 'right');
@@ -38,6 +38,5 @@ describe('App class', function() {
       app.readLine('REPORT');
       expect(app.robot.report).toHaveBeenCalled();
     });
-
   });
 });

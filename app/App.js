@@ -1,24 +1,25 @@
 'use strict';
 
-let Tabletop = require('./Tabletop'),
-    Robot = require('./Robot');
+const Tabletop = require('./Tabletop');
+const Robot = require('./Robot');
 
 class App {
 
   constructor() {
     this.tabletop = new Tabletop(5, 5);
-    this.robot = new Robot(this.tabletop);  
+    this.robot = new Robot(this.tabletop);
   }
 
   readLine(line) {
-    let data;
-  
-    if (data = line.match(/^PLACE\s(\d+),(\d+),(\w+)$/i)) {
-      let x = parseInt(data[1]),
-          y = parseInt(data[2]),
-          f = data[3].toUpperCase();
+    const data = line.match(/^PLACE\s(\d+),(\d+),(\w+)$/i);
+
+    if (data) {
+      const x = parseInt(data[1], 10);
+      const y = parseInt(data[2], 10);
+      const f = data[3].toUpperCase();
 
       this.robot.place(x, y, f);
+
       return;
     }
 
@@ -35,9 +36,11 @@ class App {
       case 'REPORT':
         this.robot.report();
         break;
+      default:
+        break;
     }
   }
-  
+
 }
 
 module.exports = App;

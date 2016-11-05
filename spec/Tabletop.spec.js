@@ -1,104 +1,92 @@
-var Tabletop = require('../app/Tabletop');
+'use strict';
 
-describe('Tabletop Class', function() {
+const Tabletop = require('../app/Tabletop');
 
-  var tabletop;
+describe('Tabletop Class', () => {
+  let tabletop;
 
-  beforeEach(function() {
+  beforeEach(() => {
     tabletop = new Tabletop(5, 5);
   });
 
-  describe('init', function() {
-
-    it('should be defined', function() {
+  describe('init', () => {
+    it('should be defined', () => {
       expect(tabletop).toBeDefined();
     });
 
-    it('should have its width and height attributes defined', function() {
+    it('should have its width and height attributes defined', () => {
       expect(tabletop.width).toBeDefined();
       expect(tabletop.height).toBeDefined();
     });
 
-    it('should throw as input is not an integer', function() {
-      expect(function() {
+    it('should throw as input is not an integer', () => {
+      expect(() => {
         tabletop = new Tabletop(null, 2);
       }).toThrow();
     });
-
   });
 
-  describe('setters', function() {
-
-    it('should throw as width is an not an integer', function() {
-      expect(function() {
+  describe('setters', () => {
+    it('should throw as width is an not an integer', () => {
+      expect(() => {
         tabletop.width = null;
       }).toThrow();
     });
 
-    it('should not throw as width is an integer', function() {
-      expect(function() {
+    it('should not throw as width is an integer', () => {
+      expect(() => {
         tabletop.width = 2;
       }).not.toThrow();
     });
 
-    it('should throw as height is an not an integer', function() {
-      expect(function() {
+    it('should throw as height is an not an integer', () => {
+      expect(() => {
         tabletop.width = 'abc';
       }).toThrow();
     });
 
-    it('should throw as height is less than or equal to 0', function() {
-      expect(function() {
+    it('should throw as height is less than or equal to 0', () => {
+      expect(() => {
         tabletop.height = 0;
       }).toThrow();
     });
 
-    it('should not throw as height is an integer and > 0', function() {
-      expect(function() {
+    it('should not throw as height is an integer and > 0', () => {
+      expect(() => {
         tabletop.height = 2;
       }).not.toThrow();
     });
-
   });
-  
-  describe('isValidPosition()', function() {
 
-    it('should throw as input is not an integer', function() {
-      expect(function() {
+  describe('isValidPosition()', () => {
+    it('should throw as input is not an integer', () => {
+      expect(() => {
         tabletop.isValidPosition('foo', 3);
       }).toThrow();
     });
 
-    it('should throw as input is not an integer', function() {
-      expect(function() {
+    it('should throw as input is not an integer', () => {
+      expect(() => {
         tabletop.isValidPosition(1);
       }).toThrow();
     });
 
-    it('should not throw as input is an integer', function() {
-      expect(function() {
+    it('should not throw as input is an integer', () => {
+      expect(() => {
         tabletop.isValidPosition(1, 3);
       }).not.toThrow();
     });
 
-    it('should be an invalid position', function() {
-      var validation = tabletop.isValidPosition(-1, 0);
-
-      expect(validation).toBe(false);
+    it('should be an invalid position', () => {
+      expect(tabletop.isValidPosition(-1, 0)).toBe(false);
     });
 
-    it('should be an invalid position', function() {
-      var validation = tabletop.isValidPosition(2, 6);
-
-      expect(validation).toBe(false);
+    it('should be an invalid position', () => {
+      expect(tabletop.isValidPosition(2, 6)).toBe(false);
     });
 
-    it('should be a valid position', function() {
-      var validation = tabletop.isValidPosition(2, 3);
-
-      expect(validation).toBe(true);
+    it('should be a valid position', () => {
+      expect(tabletop.isValidPosition(2, 3)).toBe(true);
     });
-
   });
-
 });

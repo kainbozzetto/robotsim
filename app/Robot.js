@@ -12,55 +12,51 @@ class Robot {
   }
 
   // reference to the tabletop for position based checks
-
   get tabletop() {
-    return this._tabletop;
+    return this.private_tabletop;
   }
 
   set tabletop(tabletop) {
-    this._tabletop = tabletop;
+    this.private_tabletop = tabletop;
   }
 
   // x position of the robot
-
   get x() {
-    return this._x;
+    return this.private_x;
   }
 
   set x(x) {
     if (!Number.isInteger(x)) {
-      throw 'x is not an integer';
+      throw Error('x is not an integer');
     }
 
-    this._x = x;
+    this.private_x = x;
   }
 
   // y position of the robot
-
   get y() {
-    return this._y;
+    return this.private_y;
   }
 
   set y(y) {
     if (!Number.isInteger(y)) {
-      throw 'y is not an integer';
+      throw Error('y is not an integer');
     }
 
-    this._y = y;
+    this.private_y = y;
   }
 
   // the facing direction of the robot dictated by the directions array
-
   get f() {
-    return this._f;
+    return this.private_f;
   }
 
   set f(f) {
-    if(this.directions.indexOf(f) == -1) {
-      throw 'f is not within directions array';
+    if (this.directions.indexOf(f) === -1) {
+      throw Error('f is not within directions array');
     }
 
-    this._f = f;
+    this.private_f = f;
   }
 
   place(x, y, f) {
@@ -78,7 +74,7 @@ class Robot {
   left() {
     // check if the robot is placed
     if (this.placed) {
-      let i = this.directions.indexOf(this.f);
+      const i = this.directions.indexOf(this.f);
 
       // rotate the direction to the left by obtaining the previous index
       this.f = this.directions[i - 1 < 0 ? this.directions.length - 1 : i - 1];
@@ -88,7 +84,7 @@ class Robot {
   right() {
     // check if the robot is placed
     if (this.placed) {
-      let i = this.directions.indexOf(this.f);
+      const i = this.directions.indexOf(this.f);
 
       // rotate the direction to the right by obtaining the next index
       this.f = this.directions[i + 1 >= this.directions.length ? 0 : i + 1];
@@ -97,8 +93,8 @@ class Robot {
 
   move() {
     if (this.placed) {
-      let x = this.x,
-          y = this.y;
+      let x = this.x;
+      let y = this.y;
 
       // change x or y depending on facing direction
       switch (this.f) {
@@ -114,6 +110,8 @@ class Robot {
         case 'WEST':
           x -= 1;
           break;
+        default:
+          break;
       }
 
       // update the robot with new x and y & existing f using place()
@@ -123,7 +121,7 @@ class Robot {
 
   report() {
     if (this.placed) {
-      console.log(this.x + ',' + this.y + ',' + this.f);
+      console.log(`${this.x},${this.y},${this.f}`);
     }
   }
 }

@@ -1,15 +1,13 @@
-(function() {
-  
-  'use strict';
+'use strict';
 
-  let App = require('./app/App');
+const App = require('./app/App');
+const readline = require('readline');
+const fs = require('fs');
 
-  let app = new App();
+const app = new App();
 
-  let lineReader = require('readline').createInterface({
-    input: require('fs').createReadStream('commands.txt')
-  });
+const lineReader = readline.createInterface({
+  input: fs.createReadStream('commands.txt'),
+});
 
-  lineReader.on('line', app.readLine.bind(app));
-
-}());
+lineReader.on('line', app.readLine.bind(app));
