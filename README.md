@@ -33,7 +33,9 @@ REPORT
 	Write to console the current X,Y,DIRECTION of the robot
 ```
 
-## Run Application:
+## Run Application
+
+The application files can be found under the `app` folder.
 
 ```sh
 npm start
@@ -49,7 +51,7 @@ npm test
 
 ## Examples
 
-Input (`commands.txt`):
+*Input:*
 ```
 PLACE 1,2,EAST
 MOVE
@@ -59,4 +61,7 @@ MOVE
 REPORT
 ```
 
-Output: `3,3,NORTH`
+*Output:*
+```
+3,3,NORTH
+```
