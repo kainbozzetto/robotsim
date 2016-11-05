@@ -10,6 +10,7 @@ module.exports = {
     },
     "rules": {
       "strict": "off",
-      "no-console": "off"
+      "no-console": "off",
+      "linebreak-style": "off"
     }
 };
