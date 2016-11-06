@@ -19,7 +19,7 @@ npm install
 
 ## Setup Application
 
-Modify the commands.txt file in order to control the robot.
+Modify the `commands.txt` file in order to control the robot.
 
 The robot can take the following commands:
 
