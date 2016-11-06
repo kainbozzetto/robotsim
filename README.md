@@ -1,6 +1,9 @@
 # Robot Simulation
 
-Simulation where a robot receives text commands that will allow it to traverse a 5x5 unit tabletop.
+Simulation where a robot receives text commands that will allow it to traverse a 5 unit by 5 unit tabletop.
+
+
+Written in Javascript using ES6.
 
 ## Requirements
 
@@ -64,4 +67,27 @@ REPORT
 *Output:*
 ```
 3,3,NORTH
+```
+
+*Input:*
+```
+PLACE 3,0,NORTH
+MOVE
+MOVE
+REPORT
+RIGHT
+MOVE
+REPORT
+LEFT
+LEFT
+MOVE
+MOVE
+REPORT
+```
+
+*Output:*
+```
+3,2,NORTH
+4,2,EAST
+2,2,WEST
 ```
