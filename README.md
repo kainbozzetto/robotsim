@@ -3,7 +3,7 @@
 Simulation where a robot receives text commands that will allow it to traverse a 5 unit by 5 unit tabletop.
 
 
-Written in Javascript using ES6.
+Written in Javascript utilising ES6.
 
 ## Requirements
 
