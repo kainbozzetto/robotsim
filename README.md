@@ -17,6 +17,8 @@ cd robotsim
 npm install
 ```
 
+If you are using npm v2 you may encounter an EPEERINVALID error during installation. To remove this error message please update to npm v3 by upgrading to [Node 6](http://nodejs.org) or using the command `npm install -g npm@latest`.
+
 ## Setup Application
 
 Modify the `commands.txt` file in order to control the robot.
