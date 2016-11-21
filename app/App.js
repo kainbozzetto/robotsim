@@ -8,36 +8,22 @@ class App {
   constructor() {
     this.tabletop = new Tabletop(5, 5);
     this.robot = new Robot(this.tabletop);
+
+    this.applicableMethods = ['place', 'left', 'right', 'move', 'report'];
   }
 
   readLine(line) {
-    const data = line.match(/^PLACE\s(\d+),(\d+),(\w+)$/i);
+    const data = line.match(/^(\w+)\s*(\d*),*(\d*),*(\w*)$/i);
 
     if (data) {
-      const x = parseInt(data[1], 10);
-      const y = parseInt(data[2], 10);
-      const f = data[3].toUpperCase();
+      const command = data[1].toLowerCase();
+      const x = parseInt(data[2], 10);
+      const y = parseInt(data[3], 10);
+      const f = data[4].toUpperCase();
 
-      this.robot.place(x, y, f);
-
-      return;
-    }
-
-    switch (line) {
-      case 'MOVE':
-        this.robot.move();
-        break;
-      case 'LEFT':
-        this.robot.left();
-        break;
-      case 'RIGHT':
-        this.robot.right();
-        break;
-      case 'REPORT':
-        this.robot.report();
-        break;
-      default:
-        break;
+      if (this.applicableMethods.indexOf(command) > -1 && this.robot[command]) {
+        this.robot[command].call(this.robot, x, y, f);
+      }
     }
   }
 
